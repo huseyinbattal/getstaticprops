@@ -1,5 +1,7 @@
 .container {
   padding: 0 2rem;
+  width: 90%;
+  margin: 50px auto;
 }
 
 .main {
@@ -106,6 +108,11 @@
 .logo {
   height: 1em;
   margin-left: 0.5rem;
+}
+
+.user-table{
+  border: 10px solid red;
+  border-radius: 10px;
 }
 
 @media (max-width: 600px) {

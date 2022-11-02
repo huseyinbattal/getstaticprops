@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function UserDetails({ user }) {
   return (
     <div className={styles.container}>
-      <table id="users">
+      <table id="users" className="table-user">
         <tr>
           <th>Name</th>
           <th>Email</th>
