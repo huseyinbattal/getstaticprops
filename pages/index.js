@@ -1,7 +1,7 @@
 import styles from "../styles/Home.module.css";
 import Link from "next/link";
 
-export default function Home({users}) {
+export default function Home({ users }) {
   return (
     <div className={styles.container}>
       <div className="user-table">
@@ -34,16 +34,13 @@ export default function Home({users}) {
 }
 
 export const getStaticProps = async () => {
-  
-  const res = await fetch("https://jsonplaceholder.typicode.com/users")
+  const res = await fetch("https://jsonplaceholder.typicode.com/users");
 
   const users = await res.json();
 
   return {
     props: {
-      users
-    }
-  }
-  
-
-}
+      users,
+    },
+  };
+};

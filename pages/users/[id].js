@@ -12,35 +12,60 @@ export default function UserDetails({ user }) {
           <th>WebSite</th>
         </tr>
 
-          <tr>
-            <td>{user.name}</td>
-            <td>{user.email}</td>
-            <td>{user.phone}</td>
-            <td>{user.website}</td>
-          </tr>
+        <tr>
+          <td>{user.name}</td>
+          <td>{user.email}</td>
+          <td>{user.phone}</td>
+          <td>{user.website}</td>
+        </tr>
+      </table>
 
-          </table>
-          
-          <Link href="/">
-              Go Back
-          </Link>
-
+      <Link href="/">Go Back</Link>
     </div>
   );
 }
 
-export const getServerSideProps = async (context) => {
+// export const getServerSideProps = async (context) => {
+//   const res = await fetch(
+//     `https://jsonplaceholder.typicode.com/users/${context.params.id}`
+//   );
 
+//   const user = await res.json();
+
+//   return {
+//     props: {
+//       user,
+//     },
+//   };
+// };
+
+export const getStaticProps = async (context) => {
   const res = await fetch(
     `https://jsonplaceholder.typicode.com/users/${context.params.id}`
   );
-    
-    const user = await res.json();
 
-    return {
-        props: {
-            user
-        }
-    }
-    
+  const user = await res.json();
+
+  return {
+    props: {
+      user,
+    },
+  };
+};
+
+export const getStaticPaths = async () => {
+  const res = await fetch(`https://jsonplaceholder.typicode.com/users`);
+
+  const users = await res.json();
+
+  const ids = users.map((user) => user.id);
+
+  const paths=ids.map(id=>({params:{id:id.toString()}}))
+
+
+  return {
+    paths,
+    fallback:false
+}
+
 };
